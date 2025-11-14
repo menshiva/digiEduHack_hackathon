@@ -76,12 +76,14 @@ export class SchoolCreateComponent implements OnInit {
 			contactPhone: this.contactPhone?.trim() || undefined,
 			regionId: this.regionId
 		}).subscribe({
-			next: (created: School) => {
+			next: () => {
 				this.isSaving = false;
-				void this.router.navigate(['/schools', created.id]);
+				void this.router.navigate(['/schools']);
 			},
 			error: () => {
 				this.error = 'Failed to create school';
+				// eslint-disable-next-line no-console
+				console.error('School creation failed');
 				this.isSaving = false;
 			}
 		});

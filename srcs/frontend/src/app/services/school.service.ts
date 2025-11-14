@@ -25,9 +25,15 @@ export class SchoolService {
 		);
 	}
 
-	public create(payload: Omit<School, 'id'>): Observable<School> {
-		// Not supported by backend yet
-		return of({ ...payload, id: '' } as School);
+	public create(payload: Omit<School, 'id'>): Observable<void> {
+		const body: Record<string, unknown> = {
+			name: payload.name,
+			legal_id: '', // optional in backend schema
+			address: payload.address,
+			region: payload.regionId
+			// main_contact omitted (optional)
+		};
+		return this.http.post<void>(this.apiBase, body);
 	}
 
 	public update(id: string, update: Partial<School>): Observable<School | undefined> {

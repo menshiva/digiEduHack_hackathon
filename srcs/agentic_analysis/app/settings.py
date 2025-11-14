@@ -17,11 +17,11 @@ class Settings(BaseSettings):
     app_port: int = 8000
 
     # PostgreSQL (shared between session store + tooling)
-    server_host: str = "localhost"
+    server_host: str = "digiedu-db"
     server_port: int = 5432
-    server_db: str = "postgres"
-    server_user: str = "postgres"
-    server_password: str = "postgres"
+    server_db: str = "develop"
+    server_user: str = "testuser"
+    server_password: str = "pleaseletmein"
 
     class Config:
         env_file = ".env"
